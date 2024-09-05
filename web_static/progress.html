@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="progress.js" type="module"></script>
+    <!-- <script src="log.js" type="module"></script> -->
+    <script src="logOut_from_progress.js" type="module"></script>
+  </head>
+  <body>
+    <header>
+      <!-- <h1>welcome to kidLearn</h1> -->
+      <a href="#" class="logo">
+        <img
+          src="./images/home.png"
+          alt="Example Image"
+          width="150px"
+          height="40px"
+        />
+      </a>
+      <div id="sidet"><i class="fa-solid fa-bars fa-2x"></i></div>
+      <label class="slide" id="slide">
+        <a href="#" id="hide"><i class="fa-solid fa-arrow-up fa-2x"></i></a>
+        <ul>
+          <li>
+            <a href="#" id="videoButton"
+              ><i class="fa-solid fa-video fa-2x"></i>
+            </a>
+          </li>
+          <li>
+            <a href="#" id="logOutButton"
+              ><i class="fa-solid fa-right-from-bracket fa-2x"></i
+            ></a>
+          </li>
+          <!-- <li>
+            <a href="#"><i class="fa-solid fa-bars fa-2x"></i>Delete Account</a>
+          </li> -->
+        </ul>
+      </label>
+    </header>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #ffffff;
+        margin: 0;
+        padding: 0;
+        display: inline-flexbox;
+        min-height: 100vh;
+        overflow-y: auto; /* Enable vertical scrolling */
+        justify-content: center; /* Horizontally centers the element */
+        align-items: center;
+      }
+
+      header {
+        background-color: #ffffff;
+        color: white;
+        width: 100%;
+        padding: 20px 0;
+        text-align: center;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        position: fixed;
+        margin-bottom: 0%;
+        height: 60px;
+      }
+
+      header i {
+        color: #383636;
+      }
+
+      header #sidet {
+        margin-right: 50px;
+      }
+
+      .logo {
+        margin-right: auto;
+        margin-left: 20px;
+      }
+
+      .logout-container {
+        margin-left: auto;
+        margin-right: 20px;
+      }
+
+      header button {
+        background-color: #ffffff;
+        color: #ff0000;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-weight: bold;
+        border: solid rgb(255, 0, 0);
+        border-radius: 50px;
+        transition: background-color 0.3s ease;
+        margin-right: 20px;
+        width: 150px;
+        font-size: large;
+        font-weight: 500px;
+      }
+
+      .progress-bar-container {
+        width: 520px;
+        height: 30px;
+        /* border: 1px solid #ccc; */
+        border-radius: 19px;
+        overflow: hidden;
+        margin: 100px auto;
+        margin-top: 20px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+        margin-top: 50px;
+        overflow: hidden;
+      }
+
+      .progress-bar {
+        background-color: #24ab26;
+        width: 0%;
+        height: 100%;
+        transition: width 0.5s ease;
+        border-radius: 19px;
+        position: relative;
+        margin-top: 0px;
+        display: flex;
+      }
+      .progress-bar h3 {
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        line-height: 30px; /* Match the height of the progress bar */
+        color: black; /* Adjust color as needed */
+        font-size: 16px; /* Adjust size as needed */
+      }
+
+      .slide {
+        height: 100%;
+        width: 120px;
+        position: fixed;
+        background-color: transparent;
+        transition: 0.5s ease;
+        /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6); */
+        padding-top: 20px;
+        right: 0; /* Align the sidebar to the left */
+        display: none;
+        margin-top: 1250px;
+        margin-right: 20px;
+      }
+
+      .slide h1 {
+        margin-top: 20px;
+      }
+
+      #hide {
+        padding-left: 20px;
+        color: #383636;
+      }
+
+      .slide ul li {
+        list-style: none;
+        padding-top: 15px;
+        height: 50px;
+      }
+
+      .slide ul li i {
+        padding-right: 10px;
+        padding-top: 0px;
+        color: #383636;
+      }
+
+      .slide ul li a {
+        font-size: larger;
+      }
+
+      #hide {
+        font-size: larger;
+      }
+
+      #hide i {
+        padding-right: 10px;
+        padding-left: 20px;
+        margin-bottom: 0px;
+      }
+      #prog{
+        margin-top: 200px;
+        text-align: center;
+      }
+    </style>
+    
+    <!-- <h1>Parts Of Speech</h1> -->
+    <h1 id="prog">Progress</h1>
+    <div class="progress-bar-container" id="progress">
+      <div class="progress-bar" id="progressBar">
+        <h3 id="progressText"></h3>
+      </div>
+    </div>
+  </body>
+</html>

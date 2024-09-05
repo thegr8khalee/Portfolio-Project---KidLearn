@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="quiz.js" defer></script>
+    <!-- <script src="video.js" defer></script> -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script> -->
+    <script src="log.js" type="module"></script>
+  </head>
+  <body>
+    <header>
+      <!-- <h1>welcome to kidLearn</h1> -->
+      <a href="#" class="logo">
+        <img
+          src="./images/home.png"
+          alt="Example Image"
+          width="150px"
+          height="40px"
+        />
+      </a>
+      <div id="sidet"><i class="fa-solid fa-bars fa-2x"></i></div>
+    </header>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #ffffff;
+        margin: 0;
+        padding: 0;
+        display: inline-flexbox;
+        min-height: 100vh;
+        overflow-y: auto; /* Enable vertical scrolling */
+        justify-content: center; /* Horizontally centers the element */
+        align-items: center;
+      }
+
+      header {
+        background-color: #ffffff;
+        color: white;
+        width: 100%;
+        padding: 20px 0;
+        text-align: center;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        position: fixed;
+        margin-bottom: 0%;
+        height: 60px;
+      }
+
+      header i {
+        color: #383636;
+      }
+
+      header #sidet {
+        margin-right: 50px;
+      }
+
+      .logo {
+        margin-right: auto;
+        margin-left: 20px;
+      }
+
+      .logout-container {
+        margin-left: auto;
+        margin-right: 20px;
+      }
+
+      header button {
+        background-color: #ffffff;
+        color: #ff0000;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-weight: bold;
+        border: solid rgb(255, 0, 0);
+        border-radius: 50px;
+        transition: background-color 0.3s ease;
+        margin-right: 20px;
+        width: 150px;
+        font-size: large;
+        font-weight: 500px;
+      }
+
+      button:hover {
+        background-color: #ff0000;
+        color: white;
+      }
+
+      h1 {
+        text-align: center;
+        margin-top: 200px;
+      }
+
+      .video_container {
+        margin-top: 100px;
+        justify-content: center;
+        text-align: center;
+        padding-top: 20px;
+        margin: 100px auto;
+        display: block;
+      }
+
+      .quiz_container {
+        background-color: #ffffff;
+        width: 90%;
+        height: auto;
+        max-width: 720px;
+        margin: 100px auto 0;
+        border-radius: 19px;
+        margin-bottom: 350px; /* Added padding to make content longer */
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+        padding-bottom: 20px;
+        margin-bottom: 50px;
+      }
+
+      .video_container iframe {
+        border-radius: 19px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+        display: inline-block;
+        margin: auto;
+      }
+
+      .quiz_container h1 {
+        text-align: left;
+        margin-left: 20px;
+        margin-right: 20px;
+        padding-top: 20px;
+        margin-bottom: 0px;
+        border-bottom: 3px solid rgb(0, 0, 0);
+        height: 45px;
+      }
+
+      .quiz_container .question p {
+        padding-left: 20px;
+        font-size: larger;
+      }
+
+      .quiz_container .options button {
+        margin-left: 20px;
+        display: block;
+      }
+
+      .options .option_button {
+        width: 95%;
+        height: 40px;
+        border-radius: 8px;
+        font-size: large;
+        margin-bottom: 20px;
+        background-color: white;
+        color: black;
+      }
+
+      .options .option_button:hover:not([disabled]) {
+        background-color: #c7c7c7;
+        color: black;
+      }
+      .options .option_button:disabled {
+        cursor: no-drop;
+      }
+      #next {
+        margin-left: 44%;
+        margin-right: auto;
+        height: 45px;
+        width: 100px;
+        border-radius: 8px;
+        background-color: rgb(0, 0, 0);
+        font-size: large;
+        font-weight: bold;
+        border: none;
+        margin-bottom: 20px;
+        color: white;
+      }
+      #next:hover {
+        background-color: #383636;
+        color: rgb(255, 255, 255);
+      }
+      .options {
+        padding-bottom: 20px;
+      }
+      .correct {
+        background: greenyellow;
+      }
+      .incorrect {
+        background: #ff0000;
+      }
+      .question {
+        font-size: larger;
+        padding-left: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        font-weight: bold;
+      }
+      #Submit {
+        margin-left: 48%;
+        margin-right: auto;
+        height: 45px;
+        width: 100px;
+        border-radius: 8px;
+        background-color: rgb(0, 0, 0);
+        font-size: large;
+        font-weight: bold;
+        border: none;
+        margin-bottom: 50px;
+        color: white;
+        display: none;
+        margin: 100px auto;
+        margin-top: 20px;
+        margin-bottom: 30px;
+      }
+
+      .progress-bar-container {
+        width: 720px;
+        height: 30px;
+        /* border: 1px solid #ccc; */
+        border-radius: 19px;
+        overflow: hidden;
+        margin: 100px auto;
+        margin-top: 20px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+      }
+
+      .progress-bar {
+        background-color: #24ab26;
+        width: 0%;
+        height: 100%;
+        transition: width 0.5s ease;
+        border-radius: 19px;
+        position: relative;
+        margin-top: 0px;
+        display: flex;
+      }
+      .progress-bar h3 {
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        line-height: 30px; /* Match the height of the progress bar */
+        color: black; /* Adjust color as needed */
+        font-size: 16px; /* Adjust size as needed */
+      }
+
+      #prog {
+        text-align: center;
+      }
+      .slide {
+        height: 100%;
+        width: 120px;
+        position: fixed;
+        background-color: transparent;
+        transition: 0.5s ease;
+        /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6); */
+        padding-top: 20px;
+        right: 0; /* Align the sidebar to the left */
+        display: none;
+      }
+
+      .slide h1 {
+        margin-top: 20px;
+      }
+
+      #hide {
+        padding-left: 20px;
+        color: #383636;
+      }
+
+      .slide ul li {
+        list-style: none;
+        padding-top: 15px;
+        height: 50px;
+      }
+
+      .slide ul li i {
+        padding-right: 10px;
+        padding-top: 10px;
+        color: #383636;
+      }
+
+      .slide ul li a {
+        font-size: larger;
+      }
+
+      #hide {
+        font-size: larger;
+      }
+
+      #hide i {
+        padding-right: 10px;
+        padding-left: 20px;
+        margin-bottom: 0px;
+      }
+    </style>
+    <label class="slide" id="slide">
+      <a href="#" id="hide"><i class="fa-solid fa-arrow-up fa-2x"></i></a>
+      <ul>
+        <li>
+          <a href="#" id="progressButton"
+            ><i class="fa-solid fa-bars-progress fa-2x"></i
+          ></a>
+        </li>
+        <li>
+          <a href="#" id="logOutButton"
+            ><i class="fa-solid fa-right-from-bracket fa-2x"></i
+          ></a>
+        </li>
+        <!-- <li>
+          <a href="#"><i class="fa-solid fa-bars fa-2x"></i>Delete Account</a>
+        </li> -->
+      </ul>
+    </label>
+    <!-- <h1>Parts Of Speech</h1> -->
+    <div class="video_container">
+      <h1>Video Title</h1>
+      <iframe
+        width="720"
+        height="450"
+        src="https://www.youtube.com/embed/chjmnCSPnbw?si=oolqn-lG2xnlmqBM"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+      ></iframe>
+    </div>
+    <div class="quiz_container">
+      <h1>Quiz</h1>
+      <div class="question">
+        1. Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi
+        pariatur ut consequatur magni voluptates nesciunt. Assumenda, quis
+        itaque! Molestiae unde nisi velit provident deserunt ea obcaecati
+        tempora culpa maxime expedita!
+      </div>
+      <div class="options">
+        <button class="option_button">option A</button>
+        <button class="option_button">option B</button>
+        <button class="option_button">option C</button>
+        <button class="option_button">option D</button>
+      </div>
+      <button id="next">Next</button>
+    </div>
+    <button id="Submit">Submit</button>
+    <h2 id="prog">Progress</h2>
+    <div class="progress-bar-container" id="progress">
+      <div class="progress-bar" id="progressBar">
+        <h3 id="progressText"></h3>
+      </div>
+    </div>
+    <!-- <script>
+      const firebaseConfig = {
+        apiKey: 'YOUR_API_KEY',
+        authDomain: 'YOUR_AUTH_DOMAIN',
+        projectId: 'YOUR_PROJECT_ID',
+        storageBucket: 'YOUR_STORAGE_BUCKET',
+        messagingSenderId: 'YOUR_MESSAGING_SENDER_ID',
+        appId: 'YOUR_APP_ID',
+      };
+      firebase.initializeApp(firebaseConfig);
+      const logOutButton = document.getElementById('logOutButton');
+
+      logOutButton.addEventListener('click', () => {
+        // event.preventDefault();
+        firebase
+          .auth()
+          .signOut()
+          .then(() => {
+            // Sign-out successful.
+            alert('logged out!');
+            window.location.href = 'login.html';
+          })
+          .catch((error) => {
+            // An error happened.
+            alert(error.message);
+          });
+      });
+    </script> -->
+  </body>
+</html>
