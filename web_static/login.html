@@ -4,12 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=0.5" />
     <link rel="stylesheet" href="styles/style_login.css" />
-    <!-- <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js"></script> -->
-    <!-- <link rel="stylesheet" href="./styles/login_style.css" /> -->
     <title>Login Page</title>
-    <!-- <script type="module" src="sign.js" defer></script> -->
+    <link rel="shortcut icon" href="./images/icon.jpeg" >
     <script type="module" src="log.js" defer></script>
     <style>
       body {
@@ -123,11 +119,14 @@
         text-align: center;
         margin-top: 50px;
       }
+
+      #age {
+        display: none;
+      }
     </style>
   </head>
   <body>
     <header>
-      <!-- <h1>welcome to kidLearn</h1> -->
       <a href="#">
         <img
           src="./images/home.png"
@@ -162,7 +161,11 @@
 
     <div class="container_s" id="signUp">
       <form id="signup-form">
-        <!-- <input type="text" id="name_s" placeholder="Name" required /> -->
+        <p>Choose Account type</p>
+        <select id="user-type" required>
+          <option value="parent">Parent/Guardian</option>
+          <option value="child">Child</option>
+        </select>
         <input type="email" id="email_s" placeholder="Email" required />
         <input
           type="password"
@@ -170,10 +173,13 @@
           placeholder="Password"
           required
         />
-        <select id="user-type" required>
+        <input type="first_name" id="first_name" placeholder="First Name" required />
+        <input type="last_name" id="name" placeholder="Last Name" required />
+        <input type="number" id="age" placeholder="Age"/>
+        <!-- <select id="user-type" required>
           <option value="parent">Parent/Guardian</option>
           <option value="child">Child</option>
-        </select>
+        </select> -->
         <button type="submit" id="submit_s">Sign Up</button>
       </form>
     </div>
@@ -187,7 +193,8 @@
           placeholder="Password"
           required
         />
-        <select id="user-type" required>
+        <p>Choose Account type</p>
+        <select id="user-type-login" required>
           <option value="parent">Parent/Guardian</option>
           <option value="child">Child</option>
         </select>
@@ -205,6 +212,20 @@
         }
         return;
       }
+
+      const userTypeSelect = document.getElementById("user-type");
+      const ageInput = document.getElementById("age");
+
+      function updateAgeField() {
+        if (userTypeSelect.value === "child") {
+          ageInput.style.display = "block";
+        } else {
+          ageInput.style.display = "none";
+        }
+      }
+
+      userTypeSelect.addEventListener("change", updateAgeField);
+      updateAgeField(); // Initialize on page load
     </script>
   </body>
 </html>

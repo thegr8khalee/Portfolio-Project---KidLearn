@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>KidLearn - Making Learning Fun!</title>
+    <link rel="shortcut icon" href="./images/icon.jpeg" >
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Link your CSS file -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <script type="module" src="landing.js" defer></script>
+    <!-- Font Awesome for icons -->
+  </head>
+  <body>
+    <!-- Hero Section -->
+    <header
+      class="hero-section"
+      style="background-image: url('./images/kids.jpg')"
+    >
+      <div class="hero-content">
+        <h1>KidLearn - Where Learning Feels Like Play!</h1>
+        <p>Interactive educational videos and games for kids of all ages.</p>
+        <a href="#cta" class="btn-primary" id="start"
+          >Start Your Free Learning Adventure Today!</a
+        >
+      </div>
+    </header>
+
+    <!-- Benefit Section -->
+    <section class="benefits-section">
+      <h2>Why Choose KidLearn?</h2>
+      <div class="benefits">
+        <div class="benefit">
+          <i class="fas fa-video"></i>
+          <h3>Engaging Videos</h3>
+          <p>
+            High-quality educational videos that spark curiosity and make
+            learning enjoyable.
+          </p>
+        </div>
+        <div class="benefit">
+          <i class="fas fa-gamepad"></i>
+          <h3>Interactive Games</h3>
+          <p>
+            Fun and challenging quizzes that reinforce learning in a playful
+            way.
+          </p>
+        </div>
+        <div class="benefit">
+          <i class="fas fa-shield-alt"></i>
+          <h3>Safe & Secure</h3>
+          <p>
+            A safe platform with parental controls, designed to protect
+            children.
+          </p>
+        </div>
+        <div class="benefit">
+          <i class="fas fa-money-bill-wave"></i>
+          <h3>Always Free</h3>
+          <p>
+            Free access to all learning materials, making education accessible
+            to everyone.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section id="cta" class="cta-section">
+      <h2>Ready to Learn?</h2>
+      <a class="btn-primary" id="join">Join Now and Start Learning for Free!</a>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+      <h2>What Parents and Educators Say</h2>
+      <div class="testimonials">
+        <blockquote>
+          <p>
+            "KidLearn has made learning fun for my kids. They love the
+            interactive games and I love how safe it is."
+          </p>
+          <cite>— Parent</cite>
+        </blockquote>
+        <blockquote>
+          <p>
+            "As a teacher, I use KidLearn as a supplementary tool in my
+            classroom. The kids are always engaged!"
+          </p>
+          <cite>— Educator</cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-links">
+        <a href="#" id="about">About Us</a>
+        <a href="#" id="contact">Contact</a>
+        <a href="#" id="terms">Terms of Service</a>
+        <a href="#" id="privacy">Privacy Policy</a>
+      </div>
+      <div class="social-icons">
+        <!-- <a href="#"><i class="fab fa-facebook"></i></a> -->
+        <a href="#" id="twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" id="ig"><i class="fab fa-instagram"></i></a>
+      </div>
+    </footer>
+    <style>
+      /* General Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Arial', sans-serif;
+      }
+
+      body {
+        line-height: 1.6;
+        background-color: #ffd25a; /* Adjusted to match the yellow background */
+      }
+
+      /* Hero Section */
+      .hero-section {
+        height: 100vh;
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: #003366; /* Dark Blue for text to contrast with the yellow background */
+      }
+
+      .hero-section .hero-content h1 {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.7);
+      }
+
+      .hero-section .hero-content p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.5);
+      }
+
+      .btn-primary {
+        padding: 2rem 4rem;
+        background-color: #ff6363; /* Soft Red/Pink */
+        color: white;
+        text-decoration: none;
+        font-size: 1.5rem;
+        border-radius: 50px;
+        transition: background-color 0.3s;
+      }
+
+      .btn-primary:hover {
+        background-color: #e75555;
+      }
+
+      /* Benefits Section */
+      .benefits-section {
+        padding: 3rem 2rem;
+        background-color: #ffffff;
+        text-align: center;
+      }
+
+      .benefits-section h2 {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+        color: #333;
+      }
+
+      .benefits {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+      }
+
+      .benefit {
+        flex: 1 1 200px;
+        margin: 1rem;
+        padding: 1.5rem;
+        background-color: #f7e7a3; /* Light yellow background */
+        border-radius: 10px;
+        text-align: center;
+        transition: transform 0.3s;
+      }
+
+      .benefit:hover {
+        transform: translateY(-10px);
+      }
+
+      .benefit i {
+        font-size: 3rem;
+        color: #ff6363; /* Soft Red/Pink */
+        margin-bottom: 1rem;
+      }
+
+      .benefit h3 {
+        font-size: 1.5rem;
+        color: #003366; /* Dark Blue */
+        margin-bottom: 1rem;
+      }
+
+      .benefit p {
+        font-size: 1rem;
+        color: #666;
+      }
+
+      /* CTA Section */
+      .cta-section {
+        padding: 2rem;
+        text-align: center;
+        background-color: #ffefda; /* Soft orange */
+      }
+
+      .cta-section h2 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: #003366; /* Dark Blue */
+      }
+
+      .cta-section a {
+        padding: 1rem 2rem;
+        background-color: #ff6363; /* Soft Red/Pink */
+        color: white;
+        text-decoration: none;
+        font-size: 1.2rem;
+        border-radius: 50px;
+        transition: background-color 0.3s;
+      }
+
+      .cta-section a:hover {
+        background-color: #e75555;
+      }
+
+      /* Testimonials Section */
+      .testimonials-section {
+        padding: 3rem 2rem;
+        background-color: #ffffff;
+        text-align: center;
+      }
+
+      .testimonials-section h2 {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+        color: #003366; /* Dark Blue */
+      }
+
+      .testimonials {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      blockquote {
+        flex: 1 1 300px;
+        margin: 1rem;
+        padding: 1.5rem;
+        background-color: #f7e7a3; /* Light yellow */
+        border-left: 5px solid #ff6363; /* Soft Red/Pink */
+        font-style: italic;
+        color: #555;
+      }
+
+      cite {
+        display: block;
+        margin-top: 1rem;
+        color: #888;
+      }
+
+      /* Footer */
+      .footer {
+        padding: 2rem;
+        background-color: #003366; /* Dark Blue */
+        color: white;
+        text-align: center;
+      }
+
+      .footer a {
+        color: #ff6363; /* Soft Red/Pink */
+        text-decoration: none;
+        margin: 0 1rem;
+      }
+
+      .footer a:hover {
+        text-decoration: underline;
+      }
+
+      .social-icons a {
+        margin: 0 10px;
+        color: white;
+        font-size: 1.5rem;
+      }
+
+      .social-icons a:hover {
+        color: #ff6363;
+      }
+
+      /* Responsive Styles */
+      @media (max-width: 768px) {
+        .benefits {
+          flex-direction: column;
+        }
+
+        .testimonials {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </body>
+</html>

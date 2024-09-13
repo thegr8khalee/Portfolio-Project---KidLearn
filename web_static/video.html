@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Video</title>
+    <link rel="shortcut icon" href="./images/icon.jpeg" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
@@ -28,6 +29,7 @@
           height="40px"
         />
       </a>
+      <h4 id="uid"></h4>
       <div id="sidet"><i class="fa-solid fa-bars fa-2x"></i></div>
     </header>
     <style>
@@ -115,9 +117,9 @@
 
       .quiz_container {
         background-color: #ffffff;
-        width: 90%;
+        width: 100%;
         height: auto;
-        max-width: 720px;
+        max-width: 620px;
         margin: 100px auto 0;
         border-radius: 19px;
         margin-bottom: 350px; /* Added padding to make content longer */
@@ -128,7 +130,7 @@
 
       .video_container iframe {
         border-radius: 19px;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+        box-shadow: 0px 0px 10px rgba(22, 23, 119, 0.6);
         display: inline-block;
         margin: auto;
       }
@@ -139,7 +141,7 @@
         margin-right: 20px;
         padding-top: 20px;
         margin-bottom: 0px;
-        border-bottom: 3px solid rgb(0, 0, 0);
+        border-bottom: 3px solid rgba(22, 23, 119,1);
         height: 45px;
       }
 
@@ -176,7 +178,7 @@
         height: 45px;
         width: 100px;
         border-radius: 8px;
-        background-color: rgb(0, 0, 0);
+        background-color: rgba(22, 23, 119, 1);
         font-size: large;
         font-weight: bold;
         border: none;
@@ -209,7 +211,7 @@
         height: 45px;
         width: 100px;
         border-radius: 8px;
-        background-color: rgb(0, 0, 0);
+        background-color: rgba(22, 23, 119,1);
         font-size: large;
         font-weight: bold;
         border: none;
@@ -222,14 +224,14 @@
       }
 
       .progress-bar-container {
-        width: 720px;
+        width: 620px;
         height: 30px;
         /* border: 1px solid #ccc; */
         border-radius: 19px;
         overflow: hidden;
         margin: 100px auto;
         margin-top: 20px;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+        box-shadow: 0px 0px 10px rgba(22, 23, 119, 0.6);
       }
 
       .progress-bar {
@@ -274,7 +276,7 @@
 
       #hide {
         padding-left: 20px;
-        color: #383636;
+        color: rgba(22, 23, 119, 1);
       }
 
       .slide ul li {
@@ -286,7 +288,7 @@
       .slide ul li i {
         padding-right: 10px;
         padding-top: 10px;
-        color: #383636;
+        color: rgba(22, 23, 119, 1);
       }
 
       .slide ul li a {
@@ -301,6 +303,21 @@
         padding-right: 10px;
         padding-left: 20px;
         margin-bottom: 0px;
+      }
+
+      @media (max-width: 768px) {
+        .benefits {
+          flex-direction: column;
+        }
+
+        .testimonials {
+          flex-direction: column;
+        }
+      }
+
+      #uid{
+        color: #383636;
+        margin-right: 20px;
       }
     </style>
     <label class="slide" id="slide">
@@ -323,32 +340,20 @@
     </label>
     <!-- <h1>Parts Of Speech</h1> -->
     <div class="video_container">
-      <h1>Video Title</h1>
+      <h1 id="videoTitle"></h1>
       <iframe
-        width="720"
-        height="450"
-        src="https://www.youtube.com/embed/chjmnCSPnbw?si=oolqn-lG2xnlmqBM"
-        title="YouTube video player"
+        id="videoFrame"
+        width="620"
+        height="420"
+        src=""
         frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
         allowfullscreen
       ></iframe>
     </div>
     <div class="quiz_container">
       <h1>Quiz</h1>
-      <div class="question">
-        1. Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi
-        pariatur ut consequatur magni voluptates nesciunt. Assumenda, quis
-        itaque! Molestiae unde nisi velit provident deserunt ea obcaecati
-        tempora culpa maxime expedita!
-      </div>
-      <div class="options">
-        <button class="option_button">option A</button>
-        <button class="option_button">option B</button>
-        <button class="option_button">option C</button>
-        <button class="option_button">option D</button>
-      </div>
+      <div class="question" id="questionText"></div>
+      <div class="options" id="optionsContainer"></div>
       <button id="next">Next</button>
     </div>
     <button id="Submit">Submit</button>

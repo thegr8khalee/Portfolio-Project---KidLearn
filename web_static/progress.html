@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Video</title>
+    <link rel="shortcut icon" href="./images/icon.jpeg" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
@@ -12,12 +13,10 @@
       referrerpolicy="no-referrer"
     />
     <script src="progress.js" type="module"></script>
-    <!-- <script src="log.js" type="module"></script> -->
     <script src="logOut_from_progress.js" type="module"></script>
   </head>
   <body>
     <header>
-      <!-- <h1>welcome to kidLearn</h1> -->
       <a href="#" class="logo">
         <img
           src="./images/home.png"
@@ -40,22 +39,31 @@
               ><i class="fa-solid fa-right-from-bracket fa-2x"></i
             ></a>
           </li>
-          <!-- <li>
-            <a href="#"><i class="fa-solid fa-bars fa-2x"></i>Delete Account</a>
-          </li> -->
         </ul>
       </label>
     </header>
+
+    <h1 id="prog">Progress Summary</h1>
+
+    <!-- Display videos watched and quizzes completed -->
+    <div id="progressSummary" class="progress-summary"></div>
+
+    <!-- Progress bar for total quiz score -->
+    <div class="progress-bar-container" id="progress">
+      <div class="progress-bar" id="progressBar">
+        <h3 id="progressText"></h3>
+      </div>
+    </div>
+
     <style>
       body {
         font-family: Arial, sans-serif;
         background-color: #ffffff;
         margin: 0;
         padding: 0;
-        display: inline-flexbox;
+        display: flex;
         min-height: 100vh;
-        overflow-y: auto; /* Enable vertical scrolling */
-        justify-content: center; /* Horizontally centers the element */
+        flex-direction: column;
         align-items: center;
       }
 
@@ -64,63 +72,36 @@
         color: white;
         width: 100%;
         padding: 20px 0;
-        text-align: center;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+        position: fixed;
         top: 0;
-        left: 0;
         z-index: 1000;
         display: flex;
         align-items: center;
-        position: fixed;
-        margin-bottom: 0%;
-        height: 60px;
       }
 
       header i {
         color: #383636;
       }
 
-      header #sidet {
-        margin-right: 50px;
-      }
-
       .logo {
-        margin-right: auto;
         margin-left: 20px;
       }
 
-      .logout-container {
-        margin-left: auto;
-        margin-right: 20px;
-      }
-
-      header button {
-        background-color: #ffffff;
-        color: #ff0000;
-        border: none;
-        padding: 10px 20px;
-        cursor: pointer;
-        font-weight: bold;
-        border: solid rgb(255, 0, 0);
-        border-radius: 50px;
-        transition: background-color 0.3s ease;
-        margin-right: 20px;
-        width: 150px;
-        font-size: large;
-        font-weight: 500px;
+      .progress-summary {
+        margin-top: 100px;
+        text-align: center;
+        font-size: 18px;
+        color: #333;
       }
 
       .progress-bar-container {
         width: 520px;
         height: 30px;
-        /* border: 1px solid #ccc; */
         border-radius: 19px;
         overflow: hidden;
-        margin: 100px auto;
         margin-top: 20px;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
-        margin-top: 50px;
-        overflow: hidden;
       }
 
       .progress-bar {
@@ -130,41 +111,27 @@
         transition: width 0.5s ease;
         border-radius: 19px;
         position: relative;
-        margin-top: 0px;
         display: flex;
       }
+
       .progress-bar h3 {
         margin: 0;
-        padding: 0;
         position: absolute;
         width: 100%;
         text-align: center;
-        line-height: 30px; /* Match the height of the progress bar */
-        color: black; /* Adjust color as needed */
-        font-size: 16px; /* Adjust size as needed */
+        line-height: 30px;
+        color: black;
+        font-size: 16px;
       }
 
       .slide {
-        height: 100%;
         width: 120px;
         position: fixed;
-        background-color: transparent;
-        transition: 0.5s ease;
-        /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6); */
         padding-top: 20px;
-        right: 0; /* Align the sidebar to the left */
+        right: 0;
         display: none;
-        margin-top: 1250px;
-        margin-right: 20px;
-      }
-
-      .slide h1 {
-        margin-top: 20px;
-      }
-
-      #hide {
-        padding-left: 20px;
-        color: #383636;
+        margin-right: 0px;
+        margin-top: 300px;
       }
 
       .slide ul li {
@@ -173,37 +140,110 @@
         height: 50px;
       }
 
-      .slide ul li i {
-        padding-right: 10px;
-        padding-top: 0px;
-        color: #383636;
-      }
-
       .slide ul li a {
         font-size: larger;
       }
 
       #hide {
         font-size: larger;
+        padding-left: 45px;
+        color: #383636;
       }
 
       #hide i {
         padding-right: 10px;
-        padding-left: 20px;
-        margin-bottom: 0px;
       }
-      #prog{
-        margin-top: 200px;
-        text-align: center;
+
+      header #sidet{
+        margin-right: 45px; /* Adjust as needed */
+        margin-left: auto; /* Pushes it to the far right */
       }
     </style>
-    
-    <!-- <h1>Parts Of Speech</h1> -->
-    <h1 id="prog">Progress</h1>
-    <div class="progress-bar-container" id="progress">
-      <div class="progress-bar" id="progressBar">
-        <h3 id="progressText"></h3>
-      </div>
-    </div>
+
+    <script>
+      async function getChildUid() {
+        try {
+          const response = await fetch('/api/getChildUid');
+          const data = await response.json();
+
+          if (data.success) {
+            return data.childUid;
+          } else {
+            console.error('Child UID not found');
+          }
+        } catch (error) {
+          console.error('Error fetching child UID:', error);
+        }
+      }
+
+      async function fetchProgress() {
+        const childUid = await getChildUid(); // Fetch the child's UID
+        if (!childUid) {
+          console.error('Child UID not set');
+          return;
+        }
+
+        try {
+          const response = await fetch(`/api/getProgress/${childUid}`);
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          const data = await response.json();
+
+          if (data.success && Array.isArray(data.data)) {
+            console.log('Fetched progress:', data.data);
+
+            // Now use the data to display progress
+            displayProgress(data.data);
+          } else {
+            console.error(
+              'Failed to fetch progress or invalid format:',
+              data.message || data
+            );
+          }
+        } catch (error) {
+          console.error('Error fetching progress:', error);
+        }
+      }
+
+      function displayProgress(progressData) {
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+        const progressSummary = document.getElementById('progressSummary');
+
+        let totalQuizScore = 0;
+        let maxScore = progressData.length * 5; // Set this to the max possible quiz score
+        let videosCompleted = 0;
+        let quizzesCompleted = 0;
+
+        progressData.forEach((progress) => {
+          if (progress.video_done) {
+            videosCompleted++;
+          }
+          if (progress.quiz_done) {
+            quizzesCompleted++;
+          }
+          totalQuizScore += progress.quiz_score;
+        });
+
+        // Display videos watched and quizzes completed as text
+        progressSummary.innerHTML = `
+          <p>Videos Watched: ${videosCompleted}</p>
+          <p>Quizzes Completed: ${quizzesCompleted}</p>
+        `;
+
+        // Calculate percentage based on total quiz score
+        const scorePercentage = (totalQuizScore / maxScore) * 100;
+
+        // Set the width of the progress bar based on the percentage
+        progressBar.style.width = `${scorePercentage}%`;
+        progressText.innerText = `Total Quiz Score: ${totalQuizScore} / ${maxScore}`;
+      }
+
+      // Call fetchProgress on window load
+      window.onload = () => {
+        fetchProgress();
+      };
+    </script>
   </body>
 </html>
