@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>KidLearn - Making Learning Fun!</title>
-    <link rel="shortcut icon" href="./images/icon.jpeg" >
+    <link rel="shortcut icon" href="./images/icon.jpeg" />
     <link rel="stylesheet" href="styles.css" />
     <!-- Link your CSS file -->
     <link
@@ -100,16 +100,80 @@
     <footer class="footer">
       <div class="footer-links">
         <a href="#" id="about">About Us</a>
-        <a href="#" id="contact">Contact</a>
+        <!-- <a href="#" id="contact">Contact</a>
         <a href="#" id="terms">Terms of Service</a>
-        <a href="#" id="privacy">Privacy Policy</a>
+        <a href="#" id="privacy">Privacy Policy</a> -->
       </div>
-      <div class="social-icons">
-        <!-- <a href="#"><i class="fab fa-facebook"></i></a> -->
+      <!-- <div class="social-icons">
         <a href="#" id="twitter"><i class="fab fa-twitter"></i></a>
         <a href="#" id="ig"><i class="fab fa-instagram"></i></a>
-      </div>
+      </div> -->
     </footer>
+
+    <!-- Pop-Ups -->
+    <div id="popup-about" class="popup">
+      <div class="popup-content">
+        <span class="close" data-close="popup-about">&times;</span>
+        <h2>About Us</h2>
+        <h2>Inspiration for KidLearn: Making Learning Fun Again</h2>
+      <p>
+        As a child, I vividly remember struggling to stay engaged in traditional learning methods. Textbooks felt overwhelming, and lectures often flew over my head. I yearned for a way to learn that was both fun and effective. This yearning ultimately sparked the idea for KidLearn, an interactive educational platform designed to make learning a joyful experience for children of all ages.
+      </p>
+      <p>
+        This project has been a labor of love for the past [insert timeframe], and it serves as my portfolio project for Holberton School. My goal is to create a platform that not only educates but also ignites a passion for learning in young minds.
+      </p>
+    </section>
+
+    <section class="team-section">
+      <h2>Meet the Team</h2>
+      <p>
+        <strong>Ibrahim Abdullahi (me!):</strong> Full Stack Developer & Project Manager
+      </p>
+      <p>
+        <a href="https://www.linkedin.com/in/ibrahim-abdullahi-102784244" target="_blank">LinkedIn</a> |
+        <a href="https://github.com/thegr8khalee" target="_blank">GitHub</a> |
+        <a href="https://x.com/thegr8khalee?t=GdNSRRPQ54pNw9g9-IxGBg&s=09" target="_blank">Twitter</a>
+      </p>
+    </section>
+
+    <section class="resources-section">
+      <h2>Project Resources</h2>
+      <p>
+        <a href="#" target="_blank">GitHub Repository: private repo</a>
+      </p>
+    </section>
+
+    <section class="education-section">
+      <h2>Following the Footsteps of Educational Giants</h2>
+      <p>
+        While established platforms like Khan Academy Kids and ABCmouse offer valuable learning resources, I believe there's room for a platform that prioritizes interactivity and age-appropriate content delivery. KidLearn aims to bridge that gap by incorporating game-like quizzes tailored to different age groups, fostering a deeper understanding and a more engaging learning experience.
+      </p>
+      </div>
+    </div>
+
+    <!-- <div id="popup-contact" class="popup">
+      <div class="popup-content">
+        <span class="close" data-close="popup-contact">&times;</span>
+        <h2>Contact</h2>
+        <p>This is the Contact section. Add your contact information here.</p>
+      </div>
+    </div>
+
+    <div id="popup-terms" class="popup">
+      <div class="popup-content">
+        <span class="close" data-close="popup-terms">&times;</span>
+        <h2>Terms of Service</h2>
+        <p>This is the Terms of Service section. Add your terms here.</p>
+      </div>
+    </div>
+
+    <div id="popup-privacy" class="popup">
+      <div class="popup-content">
+        <span class="close" data-close="popup-privacy">&times;</span>
+        <h2>Privacy Policy</h2>
+        <p>This is the Privacy Policy section. Add your privacy policy here.</p>
+      </div> -->
+    </div>
     <style>
       /* General Styles */
       * {
@@ -311,6 +375,40 @@
         .testimonials {
           flex-direction: column;
         }
+      }
+      /* Pop-Up Styles */
+      .popup {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.4);
+      }
+
+      .popup-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+      }
+
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
       }
     </style>
   </body>
