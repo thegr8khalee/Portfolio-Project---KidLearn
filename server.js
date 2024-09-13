@@ -14,6 +14,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Serve static files from the "public" directory
 app.use(express.static(path.join(__dirname, 'web_static')));
 
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'web_static', 'landing.html')); // Ensure landing.html is in the 'public' folder
+});
+
 const connection = mysql.createConnection({
   host: '13.60.142.95', // Change this to your MySQL host
   user: 'admin', // Change this to your MySQL username
@@ -525,7 +529,7 @@ app.get('/api/getVideoTitle/:id', (req, res) => { // Ensure endpoint name matche
 
 
 // Start the server
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3306;
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
