@@ -529,7 +529,7 @@ app.get('/api/getVideoTitle/:id', (req, res) => { // Ensure endpoint name matche
 
 
 // Start the server
-const port = process.env.PORT || 3306;
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
