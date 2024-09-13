@@ -80,7 +80,7 @@ signUp.addEventListener('click', async (e) => {
       alert('User registered successfully!, click on login button and log in.');
       // Optionally redirect or provide further instructions
       if (data.userType === 'parent') {
-        window.location.href = 'parents_page.html'; // Redirect to progress page for parent
+        window.location.href = 'Parents_page.html'; // Redirect to progress page for parent
       } else if (data.userType === 'child') {
         window.location.href = 'video.html'; // Redirect to video page for child
       }
@@ -121,7 +121,7 @@ logIn.addEventListener('click', async (e) => {
     if (data.success) {
       // Redirect based on user type
       if (data.userType === 'parent') {
-        window.location.href = 'parents_page.html'; // Redirect to progress page for parent
+        window.location.href = 'Parents_page.html'; // Redirect to progress page for parent
       } else if (data.userType === 'child') {
         window.location.href = 'video.html'; // Redirect to video page for child
       }
