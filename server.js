@@ -475,7 +475,7 @@ app.get('/getChildProgress', (req, res) => {
     const progressQuery = `
       SELECT *
       FROM Progress 
-      WHERE uid = (${placeholders})
+      WHERE uid IN (${placeholders})
     `;
 
     connection.query(progressQuery, childUids, (progressError, progressResults) => {
