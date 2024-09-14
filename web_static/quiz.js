@@ -90,10 +90,14 @@ async function fetchProgress() {
 
 
 // Load video and quiz based on the child's ID
-async function loadContent() {
+async function loadContent(incrementVideoIndex = false) {
   await fetchTotalVideos(); // Fetch total videos before loading content
   await fetchProgress(); // Fetch progress data
 
+  if (incrementVideoIndex) {
+    currentVideoIndex++; // Increment if needed
+  }
+  
   if (currentVideoIndex > totalVideos) {
     currentVideoIndex = totalVideos; // Adjust if needed
     alert('You have watched all videos');
@@ -197,8 +201,8 @@ nextButton.addEventListener('click', handleQuizNavigation);
 
 submitButton.addEventListener('click', async () => {
   await postProgress();
-  currentVideoIndex++;
-  await loadContent();
+  // currentVideoIndex++;
+  await loadContent(true);
   score = 0;
   updateProgress();
 });
