@@ -23,18 +23,24 @@ const auth = getAuth();
 
 
 
-// Log out
+//Log out
 // const logOutButton = document.getElementById('logOutButton');
 
 // logOutButton.addEventListener('click', () => {
-//   signOut(auth).then(() => {
-//     // Sign-out successful.
-//     console.log('Logged out');
-//     window.location.href = 'login.html'; // Redirect after successful sign-out
-//   }).catch((error) => {
-//     // An error happened.
-//     alert(error.message);
-//   });
+//   window.location.href = 'login.html';
+//   // event.preventDefault();
+//   firebase
+//     .auth()
+//     .signOut()
+//     .then(() => {
+//       // Sign-out successful.
+//       console.log('logged out');
+//       // window.location.href = 'login.html';
+//     })
+//     .catch((error) => {
+//       // An error happened.
+//       alert(error.message);
+//     });
 // });
 
 

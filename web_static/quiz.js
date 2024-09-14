@@ -75,7 +75,7 @@ async function fetchProgress() {
 
     const data = await response.json();
     if (data.success && Array.isArray(data.data)) {
-      currentVideoIndex = data.data.length + 1; // Set index based on watched videos
+      currentVideoIndex = data.data.length; // Set index based on watched videos
       if (data.data.length >= totalVideos) {
         alert('You have watched all videos!');
         currentVideoIndex = totalVideos; // Ensure index is within range
@@ -97,11 +97,11 @@ async function loadContent(incrementVideoIndex = false) {
   if (incrementVideoIndex) {
     currentVideoIndex++; // Increment if needed
   }
-  
+
   if (currentVideoIndex > totalVideos) {
     currentVideoIndex = totalVideos; // Adjust if needed
     alert('You have watched all videos');
-    currentQuizIndex = 0;
+    // currentQuizIndex = 0;
   }
 
   const childUid = await getChildUid(); // Fetch the child UID
@@ -200,6 +200,7 @@ async function handleQuizNavigation() {
 nextButton.addEventListener('click', handleQuizNavigation);
 
 submitButton.addEventListener('click', async () => {
+  event.preventDefault();
   await postProgress();
   // currentVideoIndex++;
   await loadContent(true);
@@ -214,7 +215,7 @@ function updateProgress() {
 }
 
 window.onload = () => {
-  loadContent();
+  loadContent(true);
 };
 
 async function postProgress() {
