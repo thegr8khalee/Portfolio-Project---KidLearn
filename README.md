@@ -114,7 +114,7 @@ This project is licensed under the MIT License.
 
 ## Screenshots
 
-![KidLearn Home Page](https://myimagehost.com/kidlearn-home.png)
+![KidLearn Home Page](./web_static/images/sc.png)
 
 ---
 
