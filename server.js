@@ -19,10 +19,10 @@ app.get('/', (req, res) => {
 });
 
 const connection = mysql.createConnection({
-  host: '34.232.67.174', 
-  user: 'admin', 
-  password: 'kidLearn-mysql', 
-  database: 'kidLearn',
+  host: '****', 
+  user: '****', 
+  password: '****', 
+  database: '****',
 });
 
 connection.connect((err) => {
