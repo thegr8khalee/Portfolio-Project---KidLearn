@@ -138,7 +138,3 @@ This project is licensed under the MIT License.
 ---
 
 Feel free to contribute, share feedback, and explore the future of fun, interactive learning with KidLearn!
-
---- 
-
-This `README.md` tells the story behind KidLearn, captures your technical choices, and provides a detailed overview of the project and its next iterations. Let me know if you'd like any adjustments!
