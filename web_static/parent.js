@@ -8,6 +8,7 @@ submitButton.addEventListener('click', async () => {
   } else {
     console.error('Parent UID or Child UID is missing');
   }
+  fetchChildProgress();
 });
 
 async function makeParentChild(parentUid, childUidValue) {
@@ -70,6 +71,8 @@ async function fetchChildProgress() {
     const container = document.getElementById('child_prog'); // The main container where we'll append child progress divs
     container.innerHTML = ''; // Clear the container before appending new data
 
+    console.log(data);
+    
     data.forEach(async (child) => {
       try {
         // Fetch child name from the new endpoint

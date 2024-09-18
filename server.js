@@ -15,14 +15,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'web_static')));
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'web_static', 'landing.html')); // Ensure landing.html is in the 'public' folder
+  res.sendFile(path.join(__dirname, 'web_static', 'landing.html')); 
 });
 
 const connection = mysql.createConnection({
-  host: '13.60.142.95', // Change this to your MySQL host
-  user: 'admin', // Change this to your MySQL username
-  password: 'kidLearn-mysql', // Change this to your MySQL password
-  database: 'kidlearn', // Change this to your database name
+  host: '34.232.67.174', 
+  user: 'admin', 
+  password: 'kidLearn-mysql', 
+  database: 'kidLearn',
 });
 
 connection.connect((err) => {
@@ -34,8 +34,7 @@ connection.connect((err) => {
 });
 
 let childUid = null;
-let parentUID = null; // Variable to store child_uid
-// import { currentVideoIndex } from './web_static/quiz.js';
+let parentUID = null; 
 
 // API to return the childUid
 app.get('/api/getChildUid', (req, res) => {
@@ -58,8 +57,47 @@ app.get('/api/getParentUid', (req, res) => {
 });
 
 // Handle POST request to /api/signup
+// app.post('/api/signup', (req, res) => {
+//   const { email, password, uid, userType, firstName, lastName, age } = req.body;
+
+//   let query;
+//   let values;
+
+//   if (userType === 'child') {
+//     // Insert into the child table
+//     query =
+//       'INSERT INTO Child (email, password, uid, first_name, last_name, age) VALUES (?, ?, ?, ?, ?, ?)';
+//     values = [email, password, uid, firstName, lastName, age];
+//   } else {
+//     // Insert into the parent table
+//     query =
+//       'INSERT INTO Parent (email, password, uid, first_name, last_name) VALUES (?, ?, ?, ?, ?)';
+//     values = [email, password, uid, firstName, lastName];
+//   }
+
+//   connection.query(query, values, (err, results) => {
+//     if (err) {
+//       console.error('Error inserting data into MySQL:', err);
+//       return res.status(500).json({ success: false });
+//     }
+
+//     // Set the child's uid if the user is a child
+//     if (userType === 'child') {
+//       childUid = uid; // Store the uid in the variable
+//     } else if (userType === 'parent') {
+//       parentUID = uid;
+//     }
+
+//     res.json({
+//       success: true,
+//       child_uid: userType === 'child' ? uid : parentUID,
+//     });
+//   });
+// });
+
+// Handle POST request to /api/signup
 app.post('/api/signup', (req, res) => {
-  const { email, password, uid, userType, firstName, lastName, age } = req.body;
+  const { email, uid, userType, firstName, lastName, age } = req.body; // Removed password
 
   let query;
   let values;
@@ -67,13 +105,13 @@ app.post('/api/signup', (req, res) => {
   if (userType === 'child') {
     // Insert into the child table
     query =
-      'INSERT INTO Child (email, password, uid, first_name, last_name, age) VALUES (?, ?, ?, ?, ?, ?)';
-    values = [email, password, uid, firstName, lastName, age];
+      'INSERT INTO Child (email, uid, first_name, last_name, age) VALUES (?, ?, ?, ?, ?)';
+    values = [email, uid, firstName, lastName, age]; 
   } else {
     // Insert into the parent table
     query =
-      'INSERT INTO Parent (email, password, uid, first_name, last_name) VALUES (?, ?, ?, ?, ?)';
-    values = [email, password, uid, firstName, lastName];
+      'INSERT INTO Parent (email, uid, first_name, last_name) VALUES (?, ?, ?, ?)';
+    values = [email, uid, firstName, lastName]; 
   }
 
   connection.query(query, values, (err, results) => {
@@ -96,21 +134,79 @@ app.post('/api/signup', (req, res) => {
   });
 });
 
-app.post('/api/login', (req, res) => {
-  const { email, password, userType } = req.body;
 
+// app.post('/api/login', (req, res) => {
+//   const { email, password, userType } = req.body;
+
+//   let query = '';
+//   if (userType === 'parent') {
+//     query = 'SELECT * FROM Parent WHERE email = ? AND password = ?';
+//   } else if (userType === 'child') {
+//     query = 'SELECT * FROM Child WHERE email = ? AND password = ?';
+//   } else {
+//     return res
+//       .status(400)
+//       .json({ success: false, message: 'Invalid user type selected' });
+//   }
+
+//   const values = [email, password];
+
+//   connection.query(query, values, (err, results) => {
+//     if (err) {
+//       console.error('Error querying database:', err);
+//       return res
+//         .status(500)
+//         .json({ success: false, message: 'Internal server error' });
+//     }
+
+//     if (results.length > 0) {
+//       const storedUserType = userType === 'parent' ? 'parent' : 'child';
+
+//       if (storedUserType === userType) {
+//         if (userType === 'child') {
+//           childUid = results[0].uid;
+//           return res.json({
+//             success: true,
+//             userType,
+//             child_uid: results[0].uid,
+//           });
+//         } else {
+//           parentUID = results[0].uid; // Set parentUID here
+//           return res.json({
+//             success: true,
+//             userType,
+//             parent_uid: results[0].uid,
+//           }); // Return parent UID as well
+//         }
+//       } else {
+//         return res
+//           .status(400)
+//           .json({ success: false, message: 'Incorrect user type selected' });
+//       }
+//     }
+
+//     res
+//       .status(404)
+//       .json({ success: false, message: 'Invalid email or password' });
+//   });
+// });
+
+
+// Handle log in
+app.post('/api/login', (req, res) => {
+  const { email, userType } = req.body; 
   let query = '';
   if (userType === 'parent') {
-    query = 'SELECT * FROM Parent WHERE email = ? AND password = ?';
+    query = 'SELECT * FROM Parent WHERE email = ?';
   } else if (userType === 'child') {
-    query = 'SELECT * FROM Child WHERE email = ? AND password = ?';
+    query = 'SELECT * FROM Child WHERE email = ?';
   } else {
     return res
       .status(400)
       .json({ success: false, message: 'Invalid user type selected' });
   }
 
-  const values = [email, password];
+  const values = [email]; 
 
   connection.query(query, values, (err, results) => {
     if (err) {
@@ -148,9 +244,10 @@ app.post('/api/login', (req, res) => {
 
     res
       .status(404)
-      .json({ success: false, message: 'Invalid email or password' });
+      .json({ success: false, message: 'Invalid email or user not found' });
   });
 });
+
 
 module.exports = { childUid };
 
@@ -236,6 +333,7 @@ app.get('/api/getContent', (req, res) => {
                 video: {
                   title: video.title,
                   url: video.url,
+                  video_id: video.video_id,
                 },
                 quizzes: quizzes,
                 nextVideoIndex: videoIndex + 1, // Provide the next video index
@@ -510,7 +608,7 @@ app.get('/api/getChildName/:uid', (req, res) => {
 
 app.get('/api/getVideoTitle/:id', (req, res) => { // Ensure endpoint name matches
   const id = req.params.id; // Changed 'uid' to 'id' to match parameter name
-  const query = 'SELECT title FROM Video WHERE Video_id = ?';
+  const query = 'SELECT title FROM Video WHERE video_id = ?';
 
   connection.query(query, [id], (error, results) => {
     if (error) {
@@ -527,6 +625,30 @@ app.get('/api/getVideoTitle/:id', (req, res) => { // Ensure endpoint name matche
   });
 });
 
+app.post('/api/resetProgress', async (req, res) => {
+  const { uid } = req.body;
+
+  if (!uid) {
+    return res.status(400).json({ success: false, message: 'Child UID is required' });
+  }
+
+  try {
+    // SQL query to delete the child's progress
+    const sql = 'DELETE FROM Progress WHERE uid = ?';
+
+    connection.query(sql, [uid], (error, results) => {
+      if (error) {
+        console.error('Error deleting progress:', error);
+        return res.status(500).json({ success: false, message: 'Error resetting progress' });
+      }
+
+      res.json({ success: true });
+    });
+  } catch (error) {
+    console.error('Error in resetProgress endpoint:', error);
+    res.status(500).json({ success: false, message: 'Error resetting progress' });
+  }
+});
 
 // Start the server
 const port = process.env.PORT || 3000;

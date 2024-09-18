@@ -8,6 +8,7 @@ let currentQuizIndex = 0; // Track the current quiz question
 let quizzes = []; // Store all quiz questions for the video
 let totalQuizzes = 0;
 let childAge = null;
+let currentVideoId = null;
 
 const questionElement = document.getElementById('questionText');
 const optionsContainer = document.getElementById('optionsContainer');
@@ -102,6 +103,7 @@ async function loadContent(incrementVideoIndex = false) {
     currentVideoIndex = totalVideos; // Adjust if needed
     alert('You have watched all videos');
     // currentQuizIndex = 0;
+    document.getElementById('resetProgressButton').style.display = 'block';
   }
 
   const childUid = await getChildUid(); // Fetch the child UID
@@ -131,6 +133,10 @@ async function loadContent(incrementVideoIndex = false) {
 
       loadQuiz(quizzes[currentQuizIndex]);
 
+      currentVideoId = data.video.video_id;
+
+      console.log(currentVideoId);
+
       // Set initial button visibility
       submitButton.style.display = 'none';
       nextButton.style.display = 'block';
@@ -150,6 +156,7 @@ function loadQuiz(quiz) {
     const button = document.createElement('button');
     button.innerText = option.text;
     button.classList.add('option_button');
+    button.dataset.correct = option.correct;
     button.onclick = () => selectAnswer(button, option.correct);
     optionsContainer.appendChild(button);
   });
@@ -165,6 +172,17 @@ function loadQuiz(quiz) {
 }
 
 function selectAnswer(button, correct) {
+  // Loop through all options to highlight the correct one
+  Array.from(optionsContainer.children).forEach((btn) => {
+    if (btn.dataset.correct === 'true') {
+      btn.style.backgroundColor = 'green';
+      btn.style.opacity = '50%';
+      btn.style.color = 'white';
+      btn.disabled = true;
+    }
+  });
+
+  // Apply styles to the selected button
   if (correct) {
     button.style.backgroundColor = 'green';
     button.style.opacity = '50%';
@@ -176,14 +194,11 @@ function selectAnswer(button, correct) {
     button.style.color = 'white';
   }
 
-  Array.from(optionsContainer.children).forEach((btn) => {
-    btn.disabled = true;
-    if (btn.dataset.correct === 'true') {
-      btn.style.backgroundColor = 'green';
-    }
-  });
+  // Update progress
   updateProgress();
 }
+
+
 
 async function handleQuizNavigation() {
   if (currentQuizIndex < totalQuizzes - 1) {
@@ -227,7 +242,7 @@ async function postProgress() {
 
   const data = {
     uid: childUid,
-    video_id: currentVideoIndex,
+    video_id: currentVideoId,
     quiz_score: score,
   };
 
@@ -269,3 +284,43 @@ hide.addEventListener('click', () => {
 progB.addEventListener('click', () => {
   window.location.href = "progress.html";
 });
+
+document.getElementById('resetProgressButton').addEventListener('click', async () => {
+  const confirmation = confirm('Are you sure you want to reset your progress?');
+
+  if (confirmation) {
+    await resetProgress();
+  }
+});
+
+async function resetProgress() {
+  const childUid = await getChildUid(); // Get the child UID
+  if (!childUid) {
+    console.error('Cannot reset progress, child UID not available');
+    return;
+  }
+
+  try {
+    const response = await fetch('/api/resetProgress', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ uid: childUid }),
+    });
+
+    const result = await response.json();
+    if (result.success) {
+      console.log('Progress reset successfully');
+      // Hide the reset progress button
+      document.getElementById('resetProgressButton').style.display = 'none';
+      // Optionally reload content or redirect
+      loadContent(true);
+    } else {
+      console.error('Failed to reset progress:', result.message);
+    }
+  } catch (error) {
+    console.error('Error resetting progress:', error);
+  }
+  loadContent();
+}

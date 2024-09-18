@@ -168,6 +168,18 @@
       #sidet i {
         color: rgba(22, 23, 119, 1);
       }
+      @media (max-width: 768px) {
+        .benefits {
+          flex-direction: column;
+        }
+
+        .testimonials {
+          flex-direction: column;
+        }
+        #progress{
+          width: 80%;
+        }
+      }
     </style>
 
     <script>
@@ -227,6 +239,7 @@
         let quizzesCompleted = 0;
 
         progressData.forEach((progress) => {
+          console.log(`Processing progress:`, progress);
           if (progress.video_done) {
             videosCompleted++;
           }

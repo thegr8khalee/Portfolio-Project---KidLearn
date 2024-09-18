@@ -375,6 +375,9 @@
         .testimonials {
           flex-direction: column;
         }
+        #start {
+          width: 80%;
+        }
       }
       /* Pop-Up Styles */
       .popup {
@@ -410,6 +413,26 @@
         text-decoration: none;
         cursor: pointer;
       }
+      /* Responsive Styles */
+      @media (max-width: 768px) {
+        .benefits {
+        flex-direction: column;
+      }
+
+  .testimonials {
+    flex-direction: column;
+  }
+
+  /* Adjust button size for mobile view */
+  .btn-primary {
+    padding: 1rem 2rem; /* Reduced padding */
+    font-size: 1.2rem; /* Smaller font size */
+  }
+  
+  #start {
+    width: 80%; /* Adjust width */
+  }
+}
     </style>
   </body>
 </html>

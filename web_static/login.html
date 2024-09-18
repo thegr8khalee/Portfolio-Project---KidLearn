@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=0.5" />
     <link rel="stylesheet" href="styles/style_login.css" />
     <title>Login Page</title>
-    <link rel="shortcut icon" href="./images/icon.jpeg" >
+    <link rel="shortcut icon" href="./images/icon.jpeg" />
     <script type="module" src="log.js" defer></script>
     <style>
       body {
@@ -129,9 +129,25 @@
       #submit_l {
         background-color: #1b1872;
       }
-       h1 {
+      h1 {
         color: #1b1872;
-       }
+      }
+      @media (max-width: 768px) {
+        .benefits {
+          flex-direction: column;
+        }
+
+        .testimonials {
+          flex-direction: column;
+        }
+        #signUp{
+          width: 80%;
+        }
+
+        #logIn{
+          width: 80%;
+        }
+      }
     </style>
   </head>
   <body>
@@ -182,9 +198,14 @@
           placeholder="Password"
           required
         />
-        <input type="first_name" id="first_name" placeholder="First Name" required />
+        <input
+          type="first_name"
+          id="first_name"
+          placeholder="First Name"
+          required
+        />
         <input type="last_name" id="name" placeholder="Last Name" required />
-        <input type="number" id="age" placeholder="Age"/>
+        <input type="number" id="age" placeholder="Age" min="3" max="11" />
         <!-- <select id="user-type" required>
           <option value="parent">Parent/Guardian</option>
           <option value="child">Child</option>
@@ -222,18 +243,18 @@
         return;
       }
 
-      const userTypeSelect = document.getElementById("user-type");
-      const ageInput = document.getElementById("age");
+      const userTypeSelect = document.getElementById('user-type');
+      const ageInput = document.getElementById('age');
 
       function updateAgeField() {
-        if (userTypeSelect.value === "child") {
-          ageInput.style.display = "block";
+        if (userTypeSelect.value === 'child') {
+          ageInput.style.display = 'block';
         } else {
-          ageInput.style.display = "none";
+          ageInput.style.display = 'none';
         }
       }
 
-      userTypeSelect.addEventListener("change", updateAgeField);
+      userTypeSelect.addEventListener('change', updateAgeField);
       updateAgeField(); // Initialize on page load
     </script>
   </body>

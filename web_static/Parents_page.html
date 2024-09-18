@@ -30,7 +30,6 @@
       <label class="slide" id="slide">
         <a href="#" id="hide"><i class="fa-solid fa-arrow-up fa-2x"></i></a>
         <ul>
-          
           <li>
             <a href="#" id="logOutButton"
               ><i class="fa-solid fa-right-from-bracket fa-2x"></i
@@ -139,7 +138,7 @@
         padding-top: 20px;
         right: 0;
         display: none;
-        margin-top:830px;
+        margin-top: 830px;
         margin-right: 20px;
       }
 
@@ -213,10 +212,11 @@
         border-radius: 19px;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
         padding: 20px;
-        margin-top: 20px;
+        margin-top: 0px;
         display: none;
         background-color: #ffffff;
         width: 620px;
+        margin-bottom: 100px;
       }
 
       #addKidForm input {
@@ -253,6 +253,21 @@
       #cancelButton:hover {
         background-color: #fff;
         color: #ff0000;
+      }
+      @media (max-width: 768px) {
+        .benefits {
+          flex-direction: column;
+        }
+
+        .testimonials {
+          flex-direction: column;
+        }
+        #child_prog{
+          width: 80%;
+        }
+        #addKidForm{
+          width: 80%;
+        }
       }
     </style>
     <div id="child_prog" class="container">
