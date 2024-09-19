@@ -3,7 +3,7 @@
 **Making learning fun and interactive for kids of all ages.**
 
 [Deployed Site](https://kidlearn.thegr8dev.tech)  
-[Final Project Blog](https://myblog.example.com/kidlearn-final-project)  
+[Final Project Blog](https://www.linkedin.com/posts/ibrahim-abdullahi-102784244_kidlearn-activity-7242293283677188097-pFLr?utm_source=share&utm_medium=member_desktop) 
 [Author LinkedIn](https://www.linkedin.com/in/ibrahim-abdullahi/)
 
 ---
@@ -96,19 +96,18 @@ This project is licensed under the MIT License.
 ## Technology Choices and Trade-offs
 
 1. **Front-End Framework**  
-   - Chosen: **React.js**  
-   - Trade-offs: React’s flexibility and simplicity made it an ideal choice, as it supports building dynamic user interfaces with ease. Angular was considered but was deemed more complex and potentially overkill for this project.
+   - Chosen: **HTML, CSS, JS**  
+   - Trade-offs: JS flexibility and simplicity made it an ideal choice, as it supports building dynamic user interfaces with ease. Angular was considered but was deemed more complex and potentially overkill for this project.
 
 2. **Game Development Framework**  
-   - Chosen: **Phaser.js**  
-   - Trade-offs: Phaser.js is lightweight and well-suited for 2D game development, while Unity, though more powerful, was too resource-intensive for this web-based project.
+   - Chosen: **HTML, JS**  
+   - Trade-offs: JS is lightweight and well-suited for game development, while Unity, though more powerful, was too resource-intensive for this web-based project.
 
 3. **Database**  
    - **MySQL**: Chosen for its reliability and scalability in handling structured data like user progress, videos, and quizzes.
 
 4. **Deployment**  
-   - **PM2**: The switch to PM2 for deployment improves process management and ensures the app runs smoothly without downtime.  
-   - **AWS**: Used for scalability as the project grows. Nginx and HAProxy handle traffic distribution and server load.
+   - **PM2**: The switch to PM2 for deployment improves process management and ensures the app runs smoothly without downtime. 
 
 ---
 
