@@ -8,13 +8,13 @@ import {
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: 'AIzaSyB29D4r5BkVN3qIBI-j9JxLjYtdWjdc3Bc',
-  authDomain: 'kidlearn-29d2c.firebaseapp.com',
-  projectId: 'kidlearn-29d2c',
-  storageBucket: 'kidlearn-29d2c.appspot.com',
-  messagingSenderId: '1055672237938',
-  appId: '1:1055672237938:web:c119d6a40d0e48ece6a7eb',
-  measurementId: 'G-MX46WZL7E2',
+  apiKey: '****',
+  authDomain: '****',
+  projectId: '****',
+  storageBucket: '****',
+  messagingSenderId: '****',
+  appId: '****',
+  measurementId: '****',
 };
 
 // Initialize Firebase
